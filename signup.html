@@ -2,47 +2,39 @@
 <html>
 <head>
 <title>Signup - Trade Signals</title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body{
- background:#050505;
- color:white;
- font-family:Arial;
- display:flex;
- justify-content:center;
- align-items:center;
- height:100vh;
+background:#050505;
+color:white;
+font-family:Arial;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
 }
-
 .box{
- background:#111;
- padding:30px;
- border-radius:15px;
- width:300px;
- text-align:center;
- border:1px solid #22c55e;
+background:#111;
+padding:30px;
+border-radius:15px;
+width:300px;
+text-align:center;
+border:1px solid #22c55e;
 }
-
 input{
- width:90%;
- padding:12px;
- margin:10px;
- border-radius:8px;
- border:none;
+width:90%;
+padding:12px;
+margin:10px;
+border-radius:8px;
+border:none;
 }
-
 button{
- background:#22c55e;
- border:none;
- padding:12px 25px;
- border-radius:8px;
- font-weight:bold;
-}
-
-a{
- color:#22c55e;
+background:#22c55e;
+border:none;
+padding:12px 25px;
+border-radius:8px;
+font-weight:bold;
 }
 </style>
 
@@ -54,72 +46,57 @@ a{
 
 <h1>👤 Signup</h1>
 
-<input type="text" placeholder="Name">
+<input id="email" type="email" placeholder="Email">
 
-<input type="email" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
 
-<input type="password" placeholder="Password">
+<button id="signup">Create Account</button>
 
-<button>Create Account</button>
-
-<p>
-Already user? <a href="login.html">Login</a>
-</p>
+<p id="msg"></p>
 
 </div>
 
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+
+
+const firebaseConfig = {
+apiKey: "AIzaSyCBmvtmwbjbRukP5LDQE5PT7CZnooD5F8c",
+authDomain: "trade-signals-pro-73560.firebaseapp.com",
+projectId: "trade-signals-pro-73560",
+storageBucket: "trade-signals-pro-73560.firebasestorage.app",
+messagingSenderId: "918472795374",
+appId: "1:918472795374:web:25f7d12a91b513cc5dffff"
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+
+document.getElementById("signup").onclick = function(){
+
+let email = document.getElementById("email").value;
+let password = document.getElementById("password").value;
+
+
+createUserWithEmailAndPassword(auth,email,password)
+
+.then(()=>{
+document.getElementById("msg").innerHTML="✅ Account Created";
+})
+
+.catch((error)=>{
+document.getElementById("msg").innerHTML=error.message;
+});
+
+}
+
+</script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
